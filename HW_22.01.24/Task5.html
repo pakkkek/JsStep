@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book List</title>
+  <style>
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      padding: 10px;
+      margin: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    li.default {
+      background-color: #f0f0f0;
+    }
+
+    li.selected {
+      background-color: #ffa500;
+    }
+  </style>
+</head>
+<body>
+
+  <ul id="bookList">
+    <li class="default" onclick="toggleBackgroundColor(this)">Book 1</li>
+    <li class="default" onclick="toggleBackgroundColor(this)">Book 2</li>
+    <li class="default" onclick="toggleBackgroundColor(this)">Book 3</li>
+  </ul>
+
+  <script>
+    function toggleBackgroundColor(book) {
+      var books = document.querySelectorAll('#bookList li');
+      books.forEach(function (bookItem) {
+        bookItem.classList.remove('selected');
+      });
+
+      book.classList.add('selected');
+    }
+  </script>
+
+</body>
+</html>

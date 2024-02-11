@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forum Page</title>
+</head>
+<body>
+
+  <h1>Forum</h1>
+
+  <ul id="messageList"></ul>
+
+  <form id="messageForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" required>
+
+    <label for="message">Message:</label>
+    <textarea id="message" required></textarea>
+
+    <button type="button" onclick="addMessage()">Add Message</button>
+  </form>
+
+  <script>
+    function addMessage() {
+      var username = document.getElementById('username').value;
+      var message = document.getElementById('message').value;
+
+      var messageList = document.getElementById('messageList');
+      var listItem = document.createElement('li');
+      listItem.textContent = `${username}: ${message}`;
+      messageList.appendChild(listItem);
+
+      document.getElementById('messageForm').reset();
+    }
+  </script>
+
+</body>
+</html>

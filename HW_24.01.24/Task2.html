@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Page</title>
+</head>
+<body>
+
+  <h1>Quiz</h1>
+
+  <form id="quizForm">
+    <fieldset>
+      <legend>Question 1</legend>
+      <p>What is the capital of France?</p>
+      <label>
+        <input type="radio" name="q1" value="paris"> Paris
+      </label>
+      <label>
+        <input type="radio" name="q1" value="berlin"> Berlin
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Question 2</legend>
+      <p>Which planet is known as the Red Planet?</p>
+      <label>
+        <input type="radio" name="q2" value="venus"> Venus
+      </label>
+      <label>
+        <input type="radio" name="q2" value="mars"> Mars
+      </label>
+    </fieldset>
+
+    <button type="button" onclick="submitQuiz()">Submit Quiz</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    function submitQuiz() {
+      var correctAnswers = 0;
+
+      var q1Answers = document.getElementsByName('q1');
+      for (var i = 0; i < q1Answers.length; i++) {
+        if (q1Answers[i].checked && q1Answers[i].value === 'paris') {
+          correctAnswers++;
+        }
+      }
+
+      var q2Answers = document.getElementsByName('q2');
+      for (var j = 0; j < q2Answers.length; j++) {
+        if (q2Answers[j].checked && q2Answers[j].value === 'mars') {
+          correctAnswers++;
+        }
+      }
+
+      var resultElement = document.getElementById('result');
+      resultElement.textContent = `You got ${correctAnswers} correct answers out of 2.`;
+    }
+  </script>
+
+</body>
+</html>

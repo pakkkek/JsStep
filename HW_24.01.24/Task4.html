@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookstore Order Form</title>
+</head>
+<body>
+
+  <h1>Bookstore Order Form</h1>
+
+  <form id="bookOrderForm" onsubmit="submitForm(event)">
+    <label for="bookSelection">Select a Book:</label>
+    <select id="bookSelection" name="bookSelection" required>
+      <option value="book1">Book 1</option>
+      <option value="book2">Book 2</option>
+      <option value="book3">Book 3</option>
+    </select>
+    <br>
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" min="1" required>
+    <br>
+    <label for="customerName">Your Name:</label>
+    <input type="text" id="customerName" name="customerName" required>
+    <br>
+    <label for="deliveryDate">Delivery Date:</label>
+    <input type="date" id="deliveryDate" name="deliveryDate" required>
+    <br>
+    <label for="deliveryAddress">Delivery Address:</label>
+    <textarea id="deliveryAddress" name="deliveryAddress" rows="4" required></textarea>
+    <br>
+    <label for="comments">Comments:</label>
+    <textarea id="comments" name="comments" rows="4"></textarea>
+    <br>
+    <button type="submit">Place Order</button>
+  </form>
+
+  <div id="orderConfirmation"></div>
+
+  <script>
+    function submitForm(event) {
+      event.preventDefault();
+
+      var bookSelection = document.getElementById('bookSelection').value;
+      var quantity = document.getElementById('quantity').value;
+      var customerName = document.getElementById('customerName').value;
+      var deliveryDate = document.getElementById('deliveryDate').value;
+      var deliveryAddress = document.getElementById('deliveryAddress').value;
+      var comments = document.getElementById('comments').value;
+
+      var orderConfirmationElement = document.getElementById('orderConfirmation');
+      orderConfirmationElement.innerHTML = `${customerName}, thank you for your order. ${quantity} copy/copies of ${bookSelection} will be delivered on ${deliveryDate} to ${deliveryAddress}.`;
+
+      document.getElementById('bookOrderForm').reset();
+    }
+  </script>
+
+</body>
+</html>
