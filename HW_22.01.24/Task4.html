@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Traffic Light</title>
+  <style>
+    #trafficLight {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
+
+    .light {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    #red { background-color: #FF0000; }
+    #yellow { background-color: #FFFF00; }
+    #green { background-color: #00FF00; }
+  </style>
+</head>
+<body>
+
+  <div id="trafficLight">
+    <div id="red" class="light"></div>
+    <div id="yellow" class="light"></div>
+    <div id="green" class="light"></div>
+
+    <button onclick="toggleTrafficLight()">Toggle Traffic Light</button>
+  </div>
+
+  <script>
+    function toggleTrafficLight() {
+      var redLight = document.getElementById('red');
+      var yellowLight = document.getElementById('yellow');
+      var greenLight = document.getElementById('green');
+
+      if (redLight.style.opacity === '1') {
+        redLight.style.opacity = '0.2';
+        yellowLight.style.opacity = '1';
+      } else if (yellowLight.style.opacity === '1') {
+        yellowLight.style.opacity = '0.2';
+        greenLight.style.opacity = '1';
+      } else if (greenLight.style.opacity === '1') {
+        greenLight.style.opacity = '0.2';
+        redLight.style.opacity = '1';
+      }
+    }
+  </script>
+
+</body>
+</html>
