@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toggle Text Visibility</title>
+  </head>
+  <body>
+    <button onclick="toggleTextVisibility()">Hide/Show Text</button>
+    <p id="hiddenText">This is text that can be hidden or displayed.</p>
+
+    <script>
+      function toggleTextVisibility() {
+        const hiddenTextElement = document.getElementById("hiddenText");
+
+        if (hiddenTextElement.style.display === "none") {
+          hiddenTextElement.style.display = "block";
+        } else {
+          hiddenTextElement.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>

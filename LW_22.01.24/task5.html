@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News List</title>
+  <style>
+    .newsItem {
+      margin-bottom: 10px;
+    }
+
+    .deleteButton {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div id="newsList">
+  <div class="newsItem">
+    <h2>News Title 1</h2>
+    <p>This is the content of news item 1.</p>
+    <button class="deleteButton" onclick="deleteNewsItem(this)">Delete</button>
+  </div>
+
+  <div class="newsItem">
+    <h2>News Title 2</h2>
+    <p>This is the content of news item 2.</p>
+    <button class="deleteButton" onclick="deleteNewsItem(this)">Delete</button>
+  </div>
+
+</div>
+
+<script>
+  function deleteNewsItem(button) {
+    const newsItem = button.parentNode;
+    const newsList = document.getElementById('newsList');
+    newsList.removeChild(newsItem);
+  }
+</script>
+
+</body>
+</html>

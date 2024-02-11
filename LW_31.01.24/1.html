@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON Formatter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #container {
+      text-align: center;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+    }
+
+    button {
+      margin-top: 10px;
+    }
+
+    #result {
+      margin-top: 20px;
+      white-space: pre-wrap;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <textarea id="jsonInput" placeholder="Enter JSON data here"></textarea>
+    <button onclick="formatJSON()">Format JSON</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const formatJSON = () => {
+      const jsonInput = document.getElementById('jsonInput').value;
+      const resultContainer = document.getElementById('result');
+
+      try {
+        const parsedJSON = JSON.parse(jsonInput);
+        const formattedJSON = JSON.stringify(parsedJSON, null, 4);
+        resultContainer.textContent = formattedJSON;
+      } catch (error) {
+        resultContainer.textContent = 'Error: Invalid JSON format';
+      }
+    };
+  </script>
+</body>
+</html>

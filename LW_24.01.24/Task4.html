@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Palette</title>
+  <script>
+    function addColor() {
+      const colorInput = document.getElementById('colorInput');
+      const color = colorInput.value;
+
+      if (color) {
+        const colorBox = document.createElement('div');
+        colorBox.className = 'color-box';
+        colorBox.style.backgroundColor = color;
+
+        const colorPalette = document.getElementById('colorPalette');
+        colorPalette.appendChild(colorBox);
+
+        colorInput.value = '';
+      }
+    }
+  </script>
+  <style>
+    .color-box {
+      width: 50px;
+      height: 50px;
+      margin: 5px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Color Palette</h2>
+
+  <div id="colorPalette">
+  </div>
+
+  <form onsubmit="event.preventDefault(); addColor();">
+    <label for="colorInput">New Color:</label>
+    <input type="color" id="colorInput" required>
+    <button type="submit">Add Color</button>
+  </form>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Page</title>
+</head>
+<body>
+
+  <h1>Create a Test</h1>
+
+  <ul id="questionList"></ul>
+
+  <form id="questionForm">
+    <label for="question">Question:</label>
+    <input type="text" id="question" required>
+
+    <label for="correctAnswer">Correct Answer:</label>
+    <input type="text" id="correctAnswer" required>
+
+    <label for="incorrectAnswer">Incorrect Answer:</label>
+    <input type="text" id="incorrectAnswer" required>
+
+    <button type="button" onclick="addQuestion()">Add Question</button>
+  </form>
+
+  <script>
+    function addQuestion() {
+      var question = document.getElementById('question').value;
+      var correctAnswer = document.getElementById('correctAnswer').value;
+      var incorrectAnswer = document.getElementById('incorrectAnswer').value;
+
+      var questionList = document.getElementById('questionList');
+      var listItem = document.createElement('li');
+      listItem.textContent = `Q: ${question} - Correct Answer: ${correctAnswer}, Incorrect Answer: ${incorrectAnswer}`;
+      questionList.appendChild(listItem);
+
+      document.getElementById('questionForm').reset();
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copywriters Catalog</title>
+</head>
+<body>
+
+  <h1>Copywriters Catalog</h1>
+
+  <div id="copywriters-list"></div>
+  <div id="copywriter-details"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => response.json())
+        .then(data => {
+          const copywritersList = document.getElementById('copywriters-list');
+          data.forEach(user => {
+            const copywriterElement = document.createElement('div');
+            copywriterElement.innerHTML = `<button onclick="showCopywriterDetails(${user.id})">${user.name}</button>`;
+            copywritersList.appendChild(copywriterElement);
+          });
+        })
+        .catch(error => console.error('Error fetching copywriters:', error));
+    });
+
+    function showCopywriterDetails(userId) {
+      fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
+        .then(response => response.json())
+        .then(copywriter => {
+          const copywriterDetails = document.getElementById('copywriter-details');
+          copywriterDetails.innerHTML = `
+            <h2>${copywriter.name}</h2>
+            <p>Email: ${copywriter.email}</p>
+            <p>Phone: ${copywriter.phone}</p>
+            <button onclick="showCopywriterPosts(${userId})">Show posts</button>
+          `;
+        })
+        .catch(error => console.error('Error fetching copywriter details:', error));
+    }
+
+    function showCopywriterPosts(userId) {
+      fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`)
+        .then(response => response.json())
+        .then(posts => {
+          const copywriterDetails = document.getElementById('copywriter-details');
+          const postsList = document.createElement('ul');
+          posts.forEach(post => {
+            const postItem = document.createElement('li');
+            postItem.textContent = post.title;
+            postsList.appendChild(postItem);
+          });
+          copywriterDetails.appendChild(postsList);
+        })
+        .catch(error => console.error('Error fetching copywriter posts:', error));
+    }
+  </script>
+
+</body>
+</html>

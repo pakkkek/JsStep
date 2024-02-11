@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProgressBar Demo</title>
+  <style>
+    #progressBar {
+      width: 300px;
+      height: 20px;
+      border: 1px solid #ccc;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    #progressFill {
+      height: 100%;
+      background-color: #4caf50;
+    }
+
+    #increaseButton {
+      padding: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div>
+  <div id="progressBar">
+    <div id="progressFill"></div>
+  </div>
+  <button id="increaseButton" onclick="increaseProgressBar()">Increase ProgressBar</button>
+</div>
+
+<script>
+  function increaseProgressBar() {
+    const progressBar = document.getElementById('progressFill');
+    const currentWidth = progressBar.style.width || '0%';
+    const currentPercentage = parseInt(currentWidth, 10);
+    
+    if (currentPercentage < 100) {
+      const newWidth = currentPercentage + 5 + '%';
+      progressBar.style.width = newWidth;
+    }
+  }
+</script>
+
+</body>
+</html>

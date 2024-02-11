@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+</head>
+<body>
+
+  <h1>Login Form</h1>
+  
+  <form id="loginForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="rememberMe">Remember Me:</label>
+    <input type="checkbox" id="rememberMe" name="rememberMe">
+    <br>
+    <button type="button" onclick="login()">Login</button>
+  </form>
+
+  <div id="output"></div>
+
+  <script>
+    function login() {
+      var username = document.getElementById("username").value;
+      var rememberMe = document.getElementById("rememberMe").checked;
+
+      var output = document.getElementById("output");
+      output.innerHTML = "Hello, " + username + "! I " + (rememberMe ? "remembered" : "did not remember") + " you.";
+    }
+  </script>
+
+</body>
+</html>

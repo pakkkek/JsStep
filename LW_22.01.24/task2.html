@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mouse XY</title>
+    <style>
+      #mouseTracker {
+        width: 100%;
+        height: 100vh;
+        border: 1px solid #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="mouseTracker"
+      onmousemove="trackMouse(event)"
+      onclick="handleMouseClick(event)"
+    >
+      Move the mouse inside this block.
+    </div>
+
+    <script>
+      function trackMouse(event) {
+        const mouseX = event.clientX;
+        const mouseY = event.clientY;
+
+        document.getElementById(
+          "mouseTracker"
+        ).innerHTML = `XY Mouse: (${mouseX}, ${mouseY})`;
+      }
+
+      function handleMouseClick(event) {
+        const mouseButton = event.button === 0 ? "left" : "right";
+
+        alert(`Click ${mouseButton} button.`);
+      }
+    </script>
+  </body>
+</html>

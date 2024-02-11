@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disable Text Selection and Context Menu</title>
+  <style>
+    body {
+      user-select: none;
+    }
+  </style>
+  <script>
+    document.addEventListener('contextmenu', function (event) {
+      event.preventDefault();
+    });
+  </script>
+</head>
+<body>
+
+  <h1>This is a sample content.</h1>
+  <p>You cannot select this text or use the right-click context menu.</p>
+
+</body>
+</html>
