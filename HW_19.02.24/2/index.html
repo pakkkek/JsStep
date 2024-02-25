@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .container {
+        display: flex;
+        height: 100vh;
+      }
+
+      .left-block {
+        width: 200px;
+        background-color: lightgray;
+        overflow: hidden;
+        transition: width 0.3s ease;
+      }
+
+      .toggle-button {
+        cursor: pointer;
+      }
+
+      .upper-block,
+      .lower-block {
+        flex: 1;
+        background-color: lightblue;
+      }
+
+      .resizer {
+        cursor: ns-resize;
+        user-select: none;
+        width: 100%;
+        text-align: center;
+        background-color: gray;
+        color: white;
+        font-size: 24px;
+        cursor: ns-resize;
+      }
+    </style>
+    <title>Resizable Blocks Page</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left-block">
+        <button class="toggle-button">&#8592;</button>
+        <p>This is the left block content</p>
+      </div>
+      <div class="upper-block"></div>
+      <div class="resizer">&#61;</div>
+      <div class="lower-block"></div>
+    </div>
+    <script>
+      $(document).ready(() => {
+        const $leftBlock = $('.left-block');
+        const $toggleButton = $('.toggle-button');
+        const $upperBlock = $('.upper-block');
+        const $lowerBlock = $('.lower-block');
+        const $resizer = $('.resizer');
+
+        let isLeftBlockHidden = false;
+
+        $toggleButton.on('click', () => {
+          isLeftBlockHidden = !isLeftBlockHidden;
+          $leftBlock.animate({ width: isLeftBlockHidden ? 0 : 200 }, 300);
+          $toggleButton.text(isLeftBlockHidden ? '→' : '←');
+        });
+
+        let isResizing = false;
+
+        $resizer.mousedown(() => {
+          isResizing = true;
+        });
+
+        $(document).mouseup(() => {
+          isResizing = false;
+        });
+
+        $(document).mousemove((e) => {
+          if (isResizing) {
+            const mouseY = e.clientY;
+            const containerHeight = $(window).innerHeight();
+            const newUpperBlockHeight = Math.max(100, mouseY);
+            const newLowerBlockHeight = Math.max(100, containerHeight - mouseY);
+
+            $upperBlock.height(newUpperBlockHeight);
+            $lowerBlock.height(newLowerBlockHeight);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

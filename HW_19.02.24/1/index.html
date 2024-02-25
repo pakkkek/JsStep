@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random String Generator</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      label,
+      textarea {
+        margin-bottom: 10px;
+      }
+
+      input[type='number'],
+      input[type='checkbox'],
+      button {
+        margin-right: 5px;
+      }
+
+      button {
+        padding: 8px;
+        cursor: pointer;
+      }
+
+      textarea {
+        width: 100%;
+        resize: none;
+      }
+    </style>
+  </head>
+  <body>
+    <label for="length">Length:</label>
+    <input type="number" id="length" min="1" value="8" />
+    <p>
+      <label>
+        <input type="checkbox" id="includeDigits" checked /> Include Digits
+      </label>
+    </p>
+
+    <p>
+      <label>
+        <input type="checkbox" id="includeUppercase" checked /> Include
+        Uppercase Letters
+      </label>
+    </p>
+
+    <p>
+      <label>
+        <input type="checkbox" id="includeLowercase" checked /> Include
+        Lowercase Letters
+      </label>
+    </p>
+
+    <p>
+      <button id="generate">Generate</button>
+    </p>
+
+    <p>
+      <textarea id="result" rows="3" readonly></textarea>
+    </p>
+
+    <p>
+      <script>
+        $(document).ready(function () {
+          $('#generate').click(function () {
+            const length = parseInt($('#length').val());
+            const includeDigits = $('#includeDigits').prop('checked');
+            const includeUppercase = $('#includeUppercase').prop('checked');
+            const includeLowercase = $('#includeLowercase').prop('checked');
+
+            const characters = [];
+            if (includeDigits) characters.push('0123456789');
+            if (includeUppercase) characters.push('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+            if (includeLowercase) characters.push('abcdefghijklmnopqrstuvwxyz');
+
+            let result = '';
+            for (let i = 0; i < length; i++) {
+              const randomSet =
+                characters[Math.floor(Math.random() * characters.length)];
+              const randomChar = randomSet.charAt(
+                Math.floor(Math.random() * randomSet.length)
+              );
+              result += randomChar;
+            }
+
+            $('#result').val(result);
+          });
+        });
+      </script>
+    </p>
+  </body>
+</html>
